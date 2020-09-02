@@ -1,0 +1,58 @@
+body {
+  background-color: whitesmoke;
+  margin: 0;
+}
+#wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+#ninja {
+  background-image: url("./images/Idle__000.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: auto;
+  height: 150px;
+  position: relative;
+  z-index: 2;
+}
+#base {
+  background-image: url("./images/tile.png");
+  background-size: contain;
+  width: 100%;
+  height: 180px;
+  /* background-repeat: repeat-x; */
+  background-position-x: top;
+}
+#kunai {
+  position: absolute;
+  display: none;
+  z-index: 1;
+  top: 50%;
+  left: 10%;
+  width: 80px;
+  height: auto;
+}
+
+#controls {
+  position: fixed;
+  border: 2px dashed indigo;
+  right: 0;
+  background-color: whitesmoke;
+  color: indigo;
+  padding: 5px;
+}
+#controls kbd {
+  display: block;
+  margin: 5px;
+}
+
+#stats {
+  position: fixed;
+  border: 2px dashed indigo;
+  left: 0;
+  background-color: whitesmoke;
+  color: indigo;
+  padding: 5px;
+}
