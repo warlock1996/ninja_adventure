@@ -7,8 +7,9 @@
     <title>WAAI-Web Animations API</title>
   </head>
   <body>
+    <audio id="sound_knife" src="./sounds/knife.m4a"></audio>
     <div id="stats">
-      <kbd>Distance Covered => 100km</kbd>
+      <kbd>Kills => <span id="kills">0</span></kbd>
     </div>
     <div id="controls">
       <kbd>&#8594; ArrowRight => Run</kbd>
@@ -20,6 +21,7 @@
     <div id="wrapper">
       <div id="ninja">
         <img id="kunai" src="./images/Kunai.png" alt="kunai" />
+        <div id="monster"></div>
       </div>
       <div id="base"></div>
     </div>

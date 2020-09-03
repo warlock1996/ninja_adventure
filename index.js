@@ -1,7 +1,11 @@
 var ninja = document.getElementById("ninja");
+var monster = document.getElementById("monster");
 var kunai = document.getElementById("kunai");
 var base = document.getElementById("base");
-
+var killsstat = document.getElementById("kills");
+var sound_knife = document.getElementById("sound_knife");
+var kunaianim = {};
+var kills = 0;
 window.addEventListener("load", () => Idle());
 window.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") {
@@ -97,8 +101,9 @@ function Throw() {
   );
 }
 function Kunai() {
+  sound_knife.play();
   kunai.style.display = "block";
-  let kunaianim = kunai.animate(
+  kunaianim = kunai.animate(
     [
       { transform: "translateX(0)" },
       { transform: "translateX(" + window.innerWidth + "px)" },
@@ -132,6 +137,40 @@ function moveBackground() {
       duration: 1000,
     }
   );
+}
+
+function RunMonster() {
+  var monsteranim = monster.animate(
+    {
+      backgroundImage: monster_run,
+      easing: "ease-in-out",
+    },
+    {
+      composite: "accumulate",
+      duration: 1000,
+      iterations: Infinity,
+    }
+  );
+
+  let start = 0;
+  let interval = setInterval(() => {
+    if (kunaianim.finished) {
+      monster.style.display = "none";
+      start = 0;
+      kunaianim = {};
+      kills = kills + 1;
+      killsstat.innerText = kills;
+      monster.style.display = "block";
+    }
+    // console.log(kunaianim, monster.style.right);
+    let threshold = parseInt(window.innerWidth);
+    let monster_pos = parseInt(monster.style.right);
+    if (monster_pos >= threshold) {
+      start = 0;
+    }
+    start += 10;
+    monster.style.right = start + "px";
+  }, 100);
 }
 
 var actions = {
@@ -220,3 +259,30 @@ var actions = {
     'url("./images/Dead__009.png")',
   ],
 };
+
+var monster_run = [
+  'url("./images/monsters/Walk__1.png")',
+  'url("./images/monsters/Walk__2.png")',
+  'url("./images/monsters/Walk__3.png")',
+  'url("./images/monsters/Walk__4.png")',
+  'url("./images/monsters/Walk__5.png")',
+  'url("./images/monsters/Walk__6.png")',
+  'url("./images/monsters/Walk__7.png")',
+  'url("./images/monsters/Walk__8.png")',
+  'url("./images/monsters/Walk__9.png")',
+];
+var monster_transform = [
+  "translateX(0)",
+  "translateX(-10px)",
+  "translateX(-20px)",
+  "translateX(-30px)",
+  "translateX(-40px)",
+  "translateX(-50px)",
+  "translateX(-60px)",
+  "translateX(-70px)",
+  "translateX(-80px)",
+  "translateX(-90px)",
+  "translateX(-100px)",
+];
+
+RunMonster();
